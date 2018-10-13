@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="toDoList">
+<head>
+    <title>ToDo List (Task2)</title>
+    <script src="Libraries/angular.js"></script>
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+    <script src="todo.js"></script>   
+</head>
+<body ng-controller="ToDoListCtrl">
+    <div class="container">        
+        <div class="page-header">
+            <h2 class="panel-heading">ToDo List</h2>
+            <h3>User: {{list.user}}</h3>
+            <h3>Number of tasks: {{list.points.length}}</h3>
+        </div>
+
+        <div>
+            <form class="form-horizontal">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-1 control-label">Name</label>
+                    <div class="col-sm-11">
+                        <input type="text" name="Name" id="name" ng-model="taskName">
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <label for="description" class="col-sm-1 control-label">Description</label>
+                    <div class="col-sm-11">
+                        <input type="text" name="Description" id="description" ng-model="descriptionText">
+                    </div>
+                </div>   
+                
+                <div class="form-group row">
+                    <div class="col-sm-offset-1 col-sm-11">
+                        <button type="submit" class="btn btn-default" ng-click="addTask()">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in list.points">
+                    <td>{{task.name}}</td>
+                    <td>{{task.description}}</td>
+                    <td><input type="checkbox" ng-model="task.completed"></td>
+                    <td>
+                        <span style="{{setStyle(task.completed)}}">
+                            {{showText(task.completed)}}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>            
+        </table>
+    </div>
+</body>
+</html>
