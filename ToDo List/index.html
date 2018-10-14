@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="toDoList">
 <head>
     <title>ToDo List (Task2)</title>
@@ -12,28 +12,37 @@
         <div class="page-header">
             <h2 class="panel-heading">ToDo List</h2>
             <h3>User: {{list.user}}</h3>
-            <h3>Number of tasks: {{list.points.length}}</h3>
+            <h3>Number of tasks: 
+                <span class="label label-info">
+                    {{list.points.length}}
+                </span>
+            </h3>
+            <h3>Number of outstanding tasks: 
+                <span class="label label-warning">
+                    {{(list.points | filter : {completed : 'false'} ).length}}
+                </span>
+            </h3>
         </div>
 
         <div>
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="myForm" novalidate>
                 <div class="form-group row">
                     <label for="name" class="col-sm-1 control-label">Name</label>
                     <div class="col-sm-11">
-                        <input type="text" name="Name" id="name" ng-model="taskName">
+                        <input type="text" name="Name" id="name" ng-model="taskName" required>
                     </div>
                 </div>
     
                 <div class="form-group row">
                     <label for="description" class="col-sm-1 control-label">Description</label>
                     <div class="col-sm-11">
-                        <input type="text" name="Description" id="description" ng-model="descriptionText">
+                        <input type="text" name="Description" id="description" ng-model="descriptionText" required>
                     </div>
                 </div>   
                 
                 <div class="form-group row">
                     <div class="col-sm-offset-1 col-sm-11">
-                        <button type="submit" class="btn btn-default" ng-click="addTask()">Add</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="addTask()">Add</button>
                     </div>
                 </div>
             </form>
