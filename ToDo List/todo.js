@@ -14,6 +14,7 @@ toDoList.controller("ToDoListCtrl", function($scope) {
             $scope.list.points.push({
                 name: $scope.taskName,
                 description: $scope.descriptionText,
+                time: new Date().toLocaleString(),
                 completed: false
             });
             $scope.taskName = "";
@@ -22,7 +23,7 @@ toDoList.controller("ToDoListCtrl", function($scope) {
     }
 
     $scope.showText = function(completed) {
-        return completed ? "Completed" : "Didn't complete";
+        return completed ? "Completed (" + new Date().toLocaleString() + ")" : "Didn't complete";
     }
 
     $scope.setStyle = function(completed) {
